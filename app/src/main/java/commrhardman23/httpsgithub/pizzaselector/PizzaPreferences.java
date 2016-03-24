@@ -58,10 +58,53 @@ public class PizzaPreferences extends AppCompatActivity {
     public void calculateCost(View vw){
 
         Intent calculatePizzaCost = new Intent(this, CostCalculator.class);
+
         boolean[] hasToppings = new boolean[toppings.length];
 
-        //insert your code here
 
+        for(int t = 0; t < toppings.length; t++)
+        {
+            // Populate the array hasToppings using the values from toppings
+            // NOTE: hasToppings is an array of boolean primitives
+            // NOTE: toppings is an array of CheckBoxes
+
+            hasToppings[t] = toppings[t].isChecked();
+
+        }
+
+        if (rdobtnIndividual.isChecked())
+        {
+            calculatePizzaCost.putExtra("SIZE_SELECTION", "Individual");
+        }
+        else if (rdobtnSmall.isChecked())
+        {
+            calculatePizzaCost.putExtra("SIZE_SELECTION", "Small");
+        }
+
+
+
+
+
+
+
+
+        // After data has been recorded/sent, we can clear the radiobutton data
+        for(int t = 0; t < toppings.length; t++){
+            toppings[t].setChecked(false);
+        }
+
+        rdobtnIndividual.setChecked(false);
+        rdobtnSmall.setChecked(false);
+        rdobtnMedium.setChecked(false);
+        rdobtnLarge.setChecked(false);
+        rdobtnExtraLarge.setChecked(false);
+        rdobtnThin.setChecked(false);
+        rdobtnThick.setChecked(false);
+        rdobtnCheeseFilled.setChecked(false);
+        chkboxGarlic.setChecked(false);
+
+
+        // Send the data which was recorded earlier and start the new activity with our Intent
         calculatePizzaCost.putExtra("TOPPINGS_BOOLEANS", hasToppings);
         startActivityForResult(calculatePizzaCost, 0);
     }

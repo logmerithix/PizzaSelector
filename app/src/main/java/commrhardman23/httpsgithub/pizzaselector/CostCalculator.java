@@ -49,6 +49,21 @@ public class CostCalculator extends AppCompatActivity {
 
         //Insert your code here.
 
+
+        for(int t = 0; t < toppingsOnPizza.length; t++)
+        {
+            //    If the element at position t is true, then the customer wants that option,
+            //      so you can add the corresponding cost to the total
+
+
+
+
+
+        }
+
+
+
+        // At this point, the cost-determining loop is done.
         String costs = String.format("Toppings: %d x $0.75 = $%.2f\nSize: %s = $%.2f\n" +
                 "Crust Type: %s = $%.2f\nSubtotal: $%.2f\nTaxes: $%.2f\nTotal: $%.2f",
                 numToppings, toppingCost, sizeName, sizeCost, crustName, crustCost,
