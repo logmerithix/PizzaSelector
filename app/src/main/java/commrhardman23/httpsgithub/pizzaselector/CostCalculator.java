@@ -54,14 +54,37 @@ public class CostCalculator extends AppCompatActivity {
         {
             //    If the element at position t is true, then the customer wants that option,
             //      so you can add the corresponding cost to the total
-
-
-
-
+            if (toppingsOnPizza[t] == true ) {
+                numToppings++;
+            }
 
         }
+        toppingCost = TOPPING_COST*numToppings;
 
+        if (sizeName.equals("Individual")){
+            sizeCost = INDIVIDUAL_COST;
+        } else if (sizeName.equals("Small")){
+            sizeCost = SMALL_COST;
+        } else if (sizeName.equals("Medium")){
+            sizeCost = MEDIUM_COST;
+        } else if (sizeName.equals("Large")){
+            sizeCost = LARGE_COST;
+        } else {
+            sizeCost = EXTRA_COST;
+        }
 
+        if (crustSelection.equals("Thin")){
+            crustCost = THIN_CRUST;
+        } else if (crustSelection.equals("Thick")){
+            crustCost = THICK_CRUST;
+        } else {
+            crustCost = CHEESE_FILLED;
+        }
+
+        if (hasGarlicCrust)
+        {
+            crustCost = GARLIC_CRUST;
+        }
 
         // At this point, the cost-determining loop is done.
         String costs = String.format("Toppings: %d x $0.75 = $%.2f\nSize: %s = $%.2f\n" +

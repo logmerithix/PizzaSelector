@@ -55,15 +55,14 @@ public class PizzaPreferences extends AppCompatActivity {
      * of costs.
      * @param vw is the button associated with the calculateCost method
      */
-    public void calculateCost(View vw){
+    public void calculateCost(View vw) {
 
         Intent calculatePizzaCost = new Intent(this, CostCalculator.class);
 
         boolean[] hasToppings = new boolean[toppings.length];
 
 
-        for(int t = 0; t < toppings.length; t++)
-        {
+        for (int t = 0; t < toppings.length; t++) {
             // Populate the array hasToppings using the values from toppings
             // NOTE: hasToppings is an array of boolean primitives
             // NOTE: toppings is an array of CheckBoxes
@@ -72,38 +71,31 @@ public class PizzaPreferences extends AppCompatActivity {
 
         }
 
-        if (rdobtnIndividual.isChecked())
-        {
+        if (rdobtnIndividual.isChecked()) {
             calculatePizzaCost.putExtra("SIZE_SELECTION", "Individual");
-        }
-        else if (rdobtnSmall.isChecked())
-        {
+        } else if (rdobtnSmall.isChecked()) {
             calculatePizzaCost.putExtra("SIZE_SELECTION", "Small");
+        } else if (rdobtnMedium.isChecked()) {
+            calculatePizzaCost.putExtra("SIZE_SELECTION", "Medium");
+        } else if (rdobtnLarge.isChecked()) {
+            calculatePizzaCost.putExtra("SIZE_SELECTION", "Large");
+        } else {
+            calculatePizzaCost.putExtra ("SIZE_SELECTION", "Extra Large");
         }
 
-
-
-
-
-
-
-
-        // After data has been recorded/sent, we can clear the radiobutton data
-        for(int t = 0; t < toppings.length; t++){
-            toppings[t].setChecked(false);
+        if (rdobtnThin.isChecked()) {
+            calculatePizzaCost.putExtra("CRUST_SELECTION", "Thin");
+        } else if (rdobtnThick.isChecked()) {
+            calculatePizzaCost.putExtra("CRUST_SELECTION", "Thick");
+        }else {
+            calculatePizzaCost.putExtra("CRUST_SELECTION", "Cheese-Filled");
         }
 
-        rdobtnIndividual.setChecked(false);
-        rdobtnSmall.setChecked(false);
-        rdobtnMedium.setChecked(false);
-        rdobtnLarge.setChecked(false);
-        rdobtnExtraLarge.setChecked(false);
-        rdobtnThin.setChecked(false);
-        rdobtnThick.setChecked(false);
-        rdobtnCheeseFilled.setChecked(false);
-        chkboxGarlic.setChecked(false);
-
-
+        if (chkboxGarlic.isChecked()) {
+            calculatePizzaCost.putExtra ("HAS_GARLIC_CRUST", true);
+        } else {
+            calculatePizzaCost.putExtra ("HAS_GARLIC_CRUST", false);
+        }
         // Send the data which was recorded earlier and start the new activity with our Intent
         calculatePizzaCost.putExtra("TOPPINGS_BOOLEANS", hasToppings);
         startActivityForResult(calculatePizzaCost, 0);
