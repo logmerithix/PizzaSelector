@@ -81,7 +81,7 @@ public class CostCalculator extends AppCompatActivity {
             crustCost = CHEESE_FILLED;
         }
 
-        if (hasGarlicCrust)
+        if (hasGarlicCrust == true)
         {
             crustCost = GARLIC_CRUST;
         }
